@@ -31,6 +31,8 @@ class AppointmentService {
     async getAll(showFinished){
         if(showFinished){
             return await Appo.find();
+
+
         }else{
             let appos = await Appo.find({'finished':false})
             let appointments = []
@@ -54,6 +56,17 @@ class AppointmentService {
             console.log(err)
         }
 
+    }
+
+    async Finish(id){
+
+        try{
+            await Appo.findByIdAndUpdate({'_id': id},{finished:true})
+            return true
+        }catch(err){
+            console.log(err)
+            return false
+        }
     }
         
         

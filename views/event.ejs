@@ -22,9 +22,14 @@
           </ul>
           <div class="card-body">
             <% if(appo.finished == false) {%>
-            <button class="btn btn-primary btn-lg btn-block">Finalizar consulta</button>
+                <form action="/finish" method="post" style="padding-bottom: 5px;" >
+                    <input type="hidden" name="id" value="<%= appo._id%>">
+                    <button class="btn btn-primary btn-lg btn-block">Finalizar consulta</button>
+                </form>
             <% }%>
-            <button class="btn btn-danger btn-lg btn-block">Voltar</button>
+            <form action="/" method="GET">
+                <button  class="btn btn-danger btn-lg btn-block">Voltar</button>
+            </form>
           </div>
     </div>
 </body>

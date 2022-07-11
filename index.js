@@ -48,11 +48,16 @@ app.get("/event/:id", async (req,res) => {
         res.redirect("/")
     }else{
         let consulta = await AppointmentService.getById(req.params.id)
-        console.log(consulta)
         res.render("event.ejs", {appo: consulta})
     }
 
     
+})
+
+app.post("/finish", async (req, res) => {
+    let id = req.body.id
+    let result = await AppointmentService.Finish(id)
+    res.redirect("/")
 })
 
 app.listen(8686,() => {
