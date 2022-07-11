@@ -68,6 +68,18 @@ class AppointmentService {
             return false
         }
     }
+
+    async serach(query){
+        try{
+            let appos = await Appo.find().or([{email: query}, {cpf: query}])
+            
+            return appos
+        }catch(err){
+            console.log(err)
+            return []
+        }
+        
+    }
         
         
 }

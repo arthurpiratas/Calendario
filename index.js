@@ -61,8 +61,32 @@ app.post("/finish", async (req, res) => {
 })
 
 app.get("/list", async (req, res) => {
+    
     let appos = await AppointmentService.getAll(true)
     res.render("list.ejs", {appos})
+})
+
+app.get("/serachresult", async (req, res) => {
+   let query = req.query.search
+   let appos = await AppointmentService.serach(query.trim())
+
+   if (appos.length == 0){
+
+        let newAppos = await AppointmentService.getAll(true)
+        let busca = query.trim()
+        let tamanho =  busca.toUpperCase().length
+
+        if(busca == '' || busca == ' '){
+            tamanho = 0
+        }else{
+            let resultNewAppos = newAppos.filter(newAppo => newAppo.email.toUpperCase().slice(0,tamanho) == busca.toUpperCase().slice(0,tamanho))
+            if(resultNewAppos.length <= 0){
+                resultNewAppos = newAppos.filter(newAppo => newAppo.cpf.toUpperCase().slice(0,tamanho) == busca.toUpperCase().slice(0,tamanho))
+            }
+            appos = resultNewAppos
+        }
+   }
+   res.render("list.ejs", {appos})
 })
 
 app.listen(8686,() => {
