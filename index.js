@@ -60,6 +60,11 @@ app.post("/finish", async (req, res) => {
     res.redirect("/")
 })
 
+app.get("/list", async (req, res) => {
+    let appos = await AppointmentService.getAll(true)
+    res.render("list.ejs", {appos})
+})
+
 app.listen(8686,() => {
     console.log("Servidor rodando")
 });
