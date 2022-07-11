@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="card" style="width: 25rem;">
+        <div class="card-header">
+            <h5 class="card-title">Consulta: <%= appo.description %></h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Paciente: <%= appo.name %></li>
+            <li class="list-group-item">Email: <%= appo.email %></li>
+            <li class="list-group-item">CPF: <%= appo.cpf %></li>
+            <% if(appo.finished == true) {%>
+                <li class="list-group-item" style="color: red; font-weight: bold">Consulta Finalizada!</li>
+            <% }%>
+          </ul>
+          <div class="card-body">
+            <% if(appo.finished == false) {%>
+            <button class="btn btn-primary btn-lg btn-block">Finalizar consulta</button>
+            <% }%>
+            <button class="btn btn-danger btn-lg btn-block">Voltar</button>
+          </div>
+    </div>
+</body>
+</html>
